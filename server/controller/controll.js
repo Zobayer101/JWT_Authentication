@@ -71,7 +71,7 @@ exports.singinuser= async (req,res)=>{
 exports.readData= async (req,res)=>{
     try{
         const data = await UserDB.find({_id:req.userID})
-        console.log(req.userID)
+        //console.log(req.userID)
         res.status(200).send(data[0])
     }catch(error){
         res.status(500).send('First you need to login')

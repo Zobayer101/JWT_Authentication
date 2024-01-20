@@ -11,10 +11,16 @@ const checkLogin=  (req,res,next)=>{
         //console.log(cookiesValue[0] )
         const decoded=  jwt.verify(cookiesValue[0],process.env.SECRET);
         req.userID=decoded.userId;
-        //req.userName=decoded.username;
-        //console.log(decoded)
-      
-        next() 
+        req.userName=decoded.username;
+        // console.log(decoded)
+        // console.log(decoded.userId)
+        if(!decoded.userId ){
+            console.log('your authentication is faled');
+        }else{
+            next()
+        }
+        
+         
     }catch(error){
         console.log(error.message);
         next(new Error('autontication fale'))
